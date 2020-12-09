@@ -1,0 +1,27 @@
+apply plugin: 'groovy'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    // 插件也是基于gradle开发的，所以需要引用这个依赖
+    implementation 'com.android.tools.build:gradle:3.4.1'
+    implementation gradleApi()
+}
+
+sourceCompatibility = "7"
+targetCompatibility = "7"
+
+apply plugin: 'maven-publish'
+
+publishing{
+    publications {
+        //Jiagu 随意给
+        Jiagu(MavenPublication){
+            // 上传编译之后的jar包
+            from components.java
+            // 引入的时候需要传入com.example:jiagu:1.0    groupId:artifactId:version
+            groupId 'com.example'
+            artifactId "jiagu"
+            version "1.0"
+        }
+    }
+}

@@ -1,0 +1,50 @@
+apply plugin: 'com.android.application'
+
+// 引入插件
+apply plugin: 'com.example.jiagu'
+
+
+jiagu{
+    userName "13629752565"
+    password "ou920708316"
+    jiaguTools 'F:\\daydayup\\AndroidPromote\\Android升华\\1.Android高阶课堂\\16.加固软件\\加固插件 资料&代码\\jiagu\\jiagu.jar'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    signingConfigs {
+        release {
+            storeFile file('enjoy.keystore')
+            storePassword '123456'
+            keyAlias 'enjoy'
+            keyPassword '123456'
+        }
+    }
+
+    defaultConfig {
+        applicationId "com.example.reinforce"
+        minSdkVersion 26
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+}
